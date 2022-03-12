@@ -89,6 +89,7 @@ resource "cloudflare_record" "ipv4" {
   proxied = true
   type    = "A"
   ttl     = 1
+  allow_overwrite = true
 }
 
 resource "cloudflare_record" "root" {
@@ -98,6 +99,7 @@ resource "cloudflare_record" "root" {
   proxied = true
   type    = "CNAME"
   ttl     = 1
+  allow_overwrite = true
 }
 
 resource "cloudflare_record" "hajimari" {
@@ -107,6 +109,7 @@ resource "cloudflare_record" "hajimari" {
   proxied = true
   type    = "CNAME"
   ttl     = 1
+  allow_overwrite = true
 }
 
 resource "cloudflare_record" "echo_server" {
@@ -116,4 +119,5 @@ resource "cloudflare_record" "echo_server" {
   proxied = true
   type    = "CNAME"
   ttl     = 1
+  allow_overwrite = true
 }
