@@ -1,7 +1,11 @@
 version = 1
 
 [[analyzers]]
-name = "shell"
+name = "secrets"
+enabled = true
+
+[[analyzers]]
+name = "test-coverage"
 enabled = true
 
 [[analyzers]]
@@ -9,7 +13,7 @@ name = "terraform"
 enabled = true
 
 [[analyzers]]
-name = "secrets"
+name = "shell"
 enabled = true
 
 [[analyzers]]
