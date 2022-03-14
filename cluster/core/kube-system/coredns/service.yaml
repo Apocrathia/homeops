@@ -2,33 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kube-dns-tcp
-  namespace: kube-system
-  annotations:
-    prometheus.io/port: "9153"
-    prometheus.io/scrape: "true"
-    metallb.universe.tf/address-pool: default
-    metallb.universe.tf/allow-shared-ip: kube-dns
-  labels:
-    k8s-app: kube-dns
-    kubernetes.io/cluster-service: "true"
-    kubernetes.io/name: "CoreDNS"
-spec:
-  selector:
-    k8s-app: kube-dns
-  ports:
-    - name: dns-tcp
-      port: 53
-      targetPort: 53
-      protocol: TCP
-  type: LoadBalancer
-  loadBalancerIP: 10.0.8.253
-  externalTrafficPolicy: Local
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kube-dns-udp
+  name: kube-dns-lan
   namespace: kube-system
   annotations:
     prometheus.io/port: "9153"
