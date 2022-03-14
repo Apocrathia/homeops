@@ -1,0 +1,6 @@
+icon: https://en.gravatar.com/userimage/6031760/bc209760a8b229f4bc162362d2e5ecba.png
+deploy:
+  - okteto build -t okteto.dev/api:${OKTETO_GIT_COMMIT} api
+  - kubectl --kubeconfig=./provision/kubeconfig apply --kustomize=./cluster/base/flux-system
+  - kubectl --kubeconfig=./provision/kubeconfig apply --kustomize=./cluster/base/flux-system
+  - kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
