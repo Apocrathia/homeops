@@ -22,5 +22,5 @@ spec:
       targetPort: 53
       protocol: UDP
   type: LoadBalancer
-  loadBalancerIP: 10.0.8.253
+  loadBalancerIP: 10.50.8.253
   externalTrafficPolicy: Local
