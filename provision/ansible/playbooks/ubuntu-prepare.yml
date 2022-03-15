@@ -13,4 +13,4 @@
         seconds: 5
   roles:
     - ubuntu
-    - os_hardening  # Add this role to secure systems
+    - os_hardening # Add this role to secure systems

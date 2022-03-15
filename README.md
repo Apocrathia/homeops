@@ -53,7 +53,7 @@ For provisioning the following tools will be used:
 #### Required
 
 | Tool                                               | Purpose                                                                                                                                 |
-|----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | [ansible](https://www.ansible.com)                 | Preparing Ubuntu for Kubernetes and installing k3s                                                                                      |
 | [direnv](https://github.com/direnv/direnv)         | Exports env vars based on present working directory                                                                                     |
 | [flux](https://toolkit.fluxcd.io/)                 | Operator that manages your k8s cluster based on your Git repository                                                                     |
@@ -68,7 +68,7 @@ For provisioning the following tools will be used:
 #### Optional
 
 | Tool                                                   | Purpose                                                  |
-|--------------------------------------------------------|----------------------------------------------------------|
+| ------------------------------------------------------ | -------------------------------------------------------- |
 | [helm](https://helm.sh/)                               | Manage Kubernetes applications                           |
 | [kustomize](https://kustomize.io/)                     | Template-free way to customize application configuration |
 | [pre-commit](https://github.com/pre-commit/pre-commit) | Runs checks pre `git commit`                             |
@@ -85,15 +85,19 @@ After pre-commit is installed on your machine run:
 ```sh
 task pre-commit:init
 ```
+
 **Remember to run this on each new clone of the repository for it to have effect.**
 
 Commands are of interest, for learning purposes:
 
 This command makes it so pre-commit runs on `git commit`, and also installs environments per the config file.
+
 ```
 pre-commit install --install-hooks
 ```
+
 This command checks for new versions of hooks, though it will occasionally make mistakes, so verify its results.
+
 ```
 pre-commit autoupdate
 ```
@@ -270,7 +274,7 @@ cat ~/.config/sops/age/keys.txt |
 
 5. If you verified all the secrets are encrypted, you can delete the `tmpl` directory now
 
-6.  Push you changes to git
+6. Push you changes to git
 
 ```sh
 git add -A
