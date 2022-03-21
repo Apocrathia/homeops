@@ -1,0 +1,32 @@
+# yamllint disable
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: minio-secret
+  namespace: longhorn-system
+type: Opaque
+data:
+  AWS_ACCESS_KEY_ID: ENC[AES256_GCM,data:1CWeZCd/khUO0yYwkYi9cYhDWYe0f/Y895OORUSq783Um/a43KFS5wXerThL+GcqJ7Ypa+kl3P+SSdTutyFBOCIWjeA=,iv:JzSDwuFDrcH3FTMbt9ENKRVP/Zb3TbozTBlHooljoOY=,tag:aZvvqGFqfHWBb5XFoeiNtA==,type:str]
+  AWS_SECRET_ACCESS_KEY: ENC[AES256_GCM,data:iTYUnO97kCOQ0zKtkYd/l2F0O9OdEDyBM/T06j79ePLTlWIzPuJ6xvzaR8l+4ef9/RQsL/iPAtTTjdsazcsEc5nDVFg=,iv:Sjj84llBRyRhXioAhizXQCr86z5eqjC4f3NFVjyjtNU=,tag:m3AVJYOI8SS9A59q+kM++w==,type:str]
+  AWS_ENDPOINTS: ENC[AES256_GCM,data:1GUkQbCPWIrbkoIA82xinrXg7AkO5yJHfb1Xt5rLxFqTp5UAmHmlWegvsSJjbINvPbadIw==,iv:VoMHhSiI4nKAt4VmconBDISePrZ5R0pKXkgVMOorZmo=,tag:TTq/jNha5snj+jOjaMECVw==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age16e0y38d5j6lmv96cw3uu9glatusl8stfmksg6f2s0gps95rr5qkq4q75fr
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB6TmhSenlwQlFDOTdyT2pl
+        K2JQVnV5a3lDbk9zMit5WWZYYmxaMUNaVVVvCjVZbmEySDNlQXMzWCszOWRUdy9N
+        WGpHMG1ZSTlBWFVzejBEMWg5djY0U00KLS0tIFE5S3BHU1dKVVExdVJ6YUtkYU9x
+        eHEvaG9LOFNhLzlzejJjaWo2aG1jYWcK7V40hVOxBvTmY9FhuO1/rHkngo7FQggE
+        vik/lsE5ZgKBSDqW8v1kC5iFNtUhGMCTqm8S2F+iu1pEUS+iPROyyQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2022-03-21T15:55:33Z"
+  mac: ENC[AES256_GCM,data:wrKORcKzDHiIul64uimCJOnR4DbvJttzhuP7TQyXHyc5ADpb7ikSw+K/FqrVGkJ+1BaBmsE+1KjpB+FYXMaeFxTZ2RjUpJiqVM5R0kDLQUcQkb4HMI2mAHVo3PTdaJCag0b1Zq/tw9kv3rInmC9GW2nMFWwX09teUJRtzzgFvAA=,iv:70oqT0B9ehKSY2K4wOwtGJFAyWEWxkKvjGzwOgQDyDU=,tag:fZihkIFav+0lt+/rBRRztA==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.2
