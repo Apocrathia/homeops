@@ -30,7 +30,7 @@ spec:
             - name: vip_interface
               value: "enp0s31f6"
             - name: port
-              value: "6443"
+              value: "443"
             - name: vip_cidr
               value: "32"
             - name: cp_enable
