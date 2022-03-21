@@ -1,10 +1,16 @@
-{
+{  
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
   "enabled": true,
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
+  "automerge": true,
+  "automergeType": "merge",
   // set up ignored deps
   "ignoreDeps": [
     "ghcr.io/fluxcd/helm-controller",
@@ -16,6 +22,10 @@
   ],
   "pre-commit": {
     "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
   },
   "flux": {
     "fileMatch": [
