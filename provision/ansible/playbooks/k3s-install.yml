@@ -31,7 +31,7 @@
       delegate_to: localhost
       become: false
       run_once: true
-      ansible.builtin.command: "git rev-parse --show-toplevel"
+      ansible.builtin.shell: "git rev-parse --show-toplevel"
       register: repo_abs_path
 
     - name: Copy kubeconfig to provision folder
