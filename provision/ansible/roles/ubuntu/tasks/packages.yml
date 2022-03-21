@@ -38,7 +38,7 @@
   until: apt_install_common is success
 
 - name: Check if Raspberry Pi
-  ansible.builtin.shell: grep -q  "Raspberry Pi" /proc/cpuinfo
+  ansible.builtin.command: grep -q  "Raspberry Pi" /proc/cpuinfo
   ignore_errors: true
   register: is_raspberry
 
