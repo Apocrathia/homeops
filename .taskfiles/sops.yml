@@ -1,0 +1,22 @@
+---
+version: "3"
+
+tasks:
+  encrypt:
+    desc: Encrypt secrets
+    cmds:
+      - >-
+        sops
+        --age=age16e0y38d5j6lmv96cw3uu9glatusl8stfmksg6f2s0gps95rr5qkq4q75fr
+        --encrypt
+        --encrypted-regex '^(data|stringData)$'
+        {{.CLI_ARGS}}
+  decrypt:
+    desc: Decrypt secrets
+    cmds:
+      - >-
+        sops
+        --age=age16e0y38d5j6lmv96cw3uu9glatusl8stfmksg6f2s0gps95rr5qkq4q75fr
+        --decrypt
+        --encrypted-regex '^(data|stringData)$'
+        {{.CLI_ARGS}}
