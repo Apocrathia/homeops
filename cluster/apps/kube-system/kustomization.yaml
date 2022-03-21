@@ -5,6 +5,8 @@ resources:
   - descheduler
   - intel-gpu-plugin
   - metrics-server
+  - kube-state-metrics
+  - node-exporter
   - nfs-subdir-external-provisioner
   - node-feature-discovery
   - reflector
