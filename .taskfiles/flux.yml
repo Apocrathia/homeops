@@ -2,6 +2,19 @@
 version: "3"
 
 tasks:
+  deploy:
+    desc: Deploy Flux within the cluster
+    cmds:
+      - kubectl --kubeconfig=./provision/kubeconfig apply --kustomize=./cluster/base/flux-system
+      - kubectl --kubeconfig=./provision/kubeconfig apply --kustomize=./cluster/base/flux-system
+      - >-
+        cat ~/.config/sops/age/keys.txt | kubectl
+        --kubeconfig=./provision/kubeconfig
+        -n flux-system create secret generic sops-age
+        --from-file=age.agekey=/dev/stdin
+      - flux get kustomizations -A
+      - kubectl --kubeconfig=./provision/kubeconfig get pods -n flux-system
+    silent: true
   sync:
     desc: Sync flux-system with the Git Repository
     cmds:
