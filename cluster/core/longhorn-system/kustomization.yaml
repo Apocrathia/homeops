@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - longhorn.yaml
   - storageclass.yaml
-  - minio.yaml
+  - minio.sops.yaml
