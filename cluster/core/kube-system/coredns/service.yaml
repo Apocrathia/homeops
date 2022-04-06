@@ -7,7 +7,7 @@ metadata:
   annotations:
     prometheus.io/port: "9153"
     prometheus.io/scrape: "true"
-    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/address-pool: bgp
     metallb.universe.tf/allow-shared-ip: kube-dns
   labels:
     k8s-app: kube-dns
@@ -22,5 +22,5 @@ spec:
       targetPort: 53
       protocol: UDP
   type: LoadBalancer
-  loadBalancerIP: 10.50.8.253
+  loadBalancerIP: 10.0.8.53
   externalTrafficPolicy: Local
