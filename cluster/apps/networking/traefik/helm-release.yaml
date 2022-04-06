@@ -50,7 +50,7 @@ spec:
       fallbackApiVersion: v1
     ingressRoute:
       dashboard:
-        enabled: false
+        enabled: true
     globalArguments:
       - "--api.insecure=true"
       - "--serverstransport.insecureskipverify=true"
@@ -81,7 +81,7 @@ spec:
         maxVersion: VersionTLS13
         sniStrict: true
     pilot:
-      enabled: false
+      enabled: true
     experimental:
       plugins:
         enabled: false
