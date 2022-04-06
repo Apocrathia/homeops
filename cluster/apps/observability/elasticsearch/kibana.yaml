@@ -85,6 +85,9 @@ metadata:
   namespace: observability
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
+    hajimari.io/appName: "kibana"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "web"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
   ingressClassName: "traefik"
