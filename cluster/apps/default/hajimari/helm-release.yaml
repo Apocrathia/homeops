@@ -34,9 +34,12 @@ spec:
           - networking
       name: "you"
       customApps:
-        - name: Some External Cluster Service
-          url: http://192.168.1.200:5000
-          icon: test-tube
+        - name: Synology
+          url: http://diskstation.${SECRET_DOMAIN}:5000
+          icon: harddisk
+        - name: UniFi
+          url: http://unifi.${SECRET_DOMAIN}:5000
+          icon: wifi
       groups:
         - name: Communicate
           links:
