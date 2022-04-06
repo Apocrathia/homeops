@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 34.1.1
+      version: 34.8.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -440,7 +440,7 @@ spec:
         ##
         image:
           repository: quay.io/prometheus/alertmanager
-          tag: v0.23.0
+          tag: v0.24.0
           sha: ""
 
         ## If true then the user will be responsible to provide a secret with alertmanager configuration
@@ -1723,7 +1723,7 @@ spec:
       ##
       image:
         repository: quay.io/prometheus-operator/prometheus-operator
-        tag: v0.55.0
+        tag: v0.55.1
         sha: ""
         pullPolicy: IfNotPresent
 
@@ -1741,7 +1741,7 @@ spec:
         # image to use for config and rule reloading
         image:
           repository: quay.io/prometheus-operator/prometheus-config-reloader
-          tag: v0.55.0
+          tag: v0.55.1
           sha: ""
 
         # resource config for prometheusConfigReloader
@@ -1757,7 +1757,7 @@ spec:
       ##
       thanosImage:
         repository: quay.io/thanos/thanos
-        tag: v0.25.1
+        tag: v0.25.2
         sha: ""
 
       ## Set a Field Selector to filter watched secrets

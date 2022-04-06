@@ -28,7 +28,7 @@ spec:
             - name: vip_arp
               value: "true"
             - name: vip_interface
-              value: "enp0s31f6"
+              value: "${BOOTSTRAP_ANSIBLE_KUBE_VIP_INTERFACE}"
             - name: port
               value: "443"
             - name: vip_cidr
@@ -40,7 +40,7 @@ spec:
             - name: svc_enable
               value: "false"
             - name: address
-              value: "10.50.8.8"
+              value: "${BOOTSTRAP_ANSIBLE_KUBE_VIP_ADDRESS}"
           securityContext:
             capabilities:
               add:
