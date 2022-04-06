@@ -1,0 +1,105 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+  namespace: observability
+spec:
+  version: 8.1.2
+  count: 2
+  elasticsearchRef:
+    name: elasticsearch
+    namespace: observability
+  config:
+    xpack.reporting.kibanaServer.hostname: kibana.observability.${SECRET_DOMAIN}
+    xpack.fleet.agents.elasticsearch.host: "https://elasticsearch-es-http.observability.svc:9200"
+    xpack.fleet.agents.fleet_server.hosts:
+      ["https://fleet-server-agent-http.observability.svc:8220"]
+    xpack.fleet.packages:
+      - name: kubernetes
+        # pinning this version as the next one introduced a kube-proxy host setting default that breaks this recipe,
+        # see https://github.com/elastic/integrations/pull/1565 for more details
+        version: 1.17.3
+    xpack.fleet.agentPolicies:
+      - name: Default Fleet Server on ECK policy
+        is_default_fleet_server: true
+        package_policies:
+          - package:
+              name: fleet_server
+            name: fleet_server
+      - name: Default Elastic Agent on ECK policy
+        is_default: true
+        unenroll_timeout: 900
+        package_policies:
+          - package:
+              name: system
+            name: default-system
+          - package:
+              name: kubernetes
+            name: default-kubernetes
+          - package:
+              name: apm
+            name: default-apm
+            inputs:
+              - type: apm
+                enabled: true
+                vars:
+                  - name: host
+                    value: 0.0.0.0:8200
+  # podTemplate:
+  #   spec:
+  #     initContainers:
+  #       - name: install-wazuh
+  #         command:
+  #           - sh
+  #           - -c
+  #           - "bin/kibana-plugin install https://packages.wazuh.com/4.x/ui/kibana/wazuh_kibana-4.2.5_7.14.2-1.zip"
+  #       - name: kibana-optimize
+  #         command:
+  #           - sh
+  #           - -c
+  #           - bin/kibana --optimize
+  #     containers:
+  #       - name: kibana
+  #         volumeMounts:
+  #         - name: kibana-data
+  #           mountPath: /usr/share/kibana/data
+  #     volumes:
+  #     - name: kibana-data
+  #       persistentVolumeClaim:
+  #         claimName: elasticsearch-kibana-data
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: kibana-data # Do not change this name unless you set up a volume mount for the data path.
+  #     spec:
+  #       accessModes:
+  #       - ReadWriteOnce
+  #       resources:
+  #         requests:
+  #           storage: 5Gi
+  #       # storageClassName: longhorn # Uncomment this line if you want to use a storage class
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana
+  namespace: observability
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+spec:
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - "search.${SECRET_DOMAIN}"
+      secretName: "kibana-tls"
+  rules:
+    - host: "search.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana-kb-http
+                port:
+                  number: 5601

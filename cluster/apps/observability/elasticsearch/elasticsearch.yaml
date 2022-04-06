@@ -1,0 +1,97 @@
+# For production, this will require SSO authentication.
+# Please refer to the following documentation
+# https://github.com/elastic/cloud-on-k8s/blob/master/docs/orchestrating-elastic-stack-applications/security/saml-authentication.asciidoc
+
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch
+  namespace: observability
+spec:
+  version: 8.1.2
+  transport:
+    service:
+      spec:
+        type: LoadBalancer
+        externalName: elasticsearch.observability.${SECRET_DOMAIN}
+        ports:
+          - name: http
+            port: 9200
+            targetPort: 9200
+            protocol: TCP
+  nodeSets:
+    - name: master
+      count: 2
+      config:
+        node.roles: ["master"]
+        node.store.allow_mmap: false
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-master
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 16Gi
+            storageClassName: longhorn-static
+    - name: data
+      count: 3
+      config:
+        mnode.roles: ["data"]
+        node.store.allow_mmap: false
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 128Gi
+            storageClassName: longhorn-static
+    - name: ingest
+      count: 2
+      config:
+        mnode.roles: ["ingest"]
+        node.store.allow_mmap: false
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-ingest
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 16Gi
+            storageClassName: longhorn-static
+    - name: transform
+      count: 2
+      config:
+        mnode.roles: ["transform"]
+        node.store.allow_mmap: false
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-transform # Do not change this name unless you set up a volume mount for the data path.
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 16Gi
+            storageClassName: longhorn-static
+    - name: learner
+      count: 1
+      config:
+        mnode.roles: ["ml"]
+        node.store.allow_mmap: false
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-learn # Do not change this name unless you set up a volume mount for the data path.
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 16Gi
+            storageClassName: longhorn-static
