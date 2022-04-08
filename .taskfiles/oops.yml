@@ -2,15 +2,19 @@
 version: "3"
 
 tasks:
-  default:
+  kill:
     desc: Looks like you fucked up
     cmds:
       - task ansible:playbook:k3s-nuke
       - task ansible:adhoc:reboot
+      - sleep 30
       - task ansible:adhoc:uptime
+  retry:
+    desc: Let's try again
+    cmds:
       - task ansible:playbook:k3s-install
       - cp -f provision/kubeconfig ~/.kube/config
-      - task flux:deploy
-      - task flux:deploy
+      - task flux:deploy; sleep 10
+      - task flux:deploy; sleep 10
       - task flux:sync
       - echo "Now try again, dumbass..."
