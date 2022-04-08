@@ -8,6 +8,8 @@ k3s_control_node: true
 # (dict) k3s settings for all control-plane nodes
 k3s_server:
   node-ip: "{{ ansible_host }}"
+  # Listen on 443
+  listen-port: 443
   tls-san:
     # kube-vip
     - "{{ kubevip_address }}"

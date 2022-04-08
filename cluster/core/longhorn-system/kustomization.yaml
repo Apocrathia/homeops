@@ -4,3 +4,4 @@ resources:
   - longhorn.yaml
   - storageclass.yaml
   - minio.sops.yaml
+  - ingress.yaml

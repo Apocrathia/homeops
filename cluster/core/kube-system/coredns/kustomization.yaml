@@ -3,3 +3,47 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - helm-release.yaml
+---
+$patch: delete
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: coredns
+  namespace: kube-system
+---
+$patch: delete
+apiVersion: v1
+kind: ClusterRole
+metadata:
+  name: system:coredns-temp
+---
+$patch: delete
+apiVersion: v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  labels:
+    kubernetes.io/bootstrapping: rbac-defaults
+  name: system:coredns-temp
+---
+$patch: delete
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-temp
+  namespace: kube-system
+---
+$patch: delete
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: coredns-temp
+  namespace: kube-system
+---
+$patch: delete
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-dns-temp
+  namespace: kube-system
