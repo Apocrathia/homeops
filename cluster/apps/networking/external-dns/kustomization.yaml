@@ -5,3 +5,4 @@ resources:
   - secret.sops.yaml
   - external-dns-cloudflare
   - internal-dns
+  - cloudflare-ddns
