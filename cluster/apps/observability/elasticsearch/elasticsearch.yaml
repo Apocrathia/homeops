@@ -27,7 +27,7 @@ spec:
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
-            name: elasticsearch-master
+            name: elasticsearch-data
           spec:
             accessModes:
               - ReadWriteOnce
@@ -57,7 +57,7 @@ spec:
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
-            name: elasticsearch-ingest
+            name: elasticsearch-data
           spec:
             accessModes:
               - ReadWriteOnce
@@ -72,7 +72,7 @@ spec:
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
-            name: elasticsearch-transform # Do not change this name unless you set up a volume mount for the data path.
+            name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
           spec:
             accessModes:
               - ReadWriteOnce
@@ -87,7 +87,7 @@ spec:
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
-            name: elasticsearch-learn # Do not change this name unless you set up a volume mount for the data path.
+            name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
           spec:
             accessModes:
               - ReadWriteOnce
