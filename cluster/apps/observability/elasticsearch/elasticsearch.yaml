@@ -38,7 +38,7 @@ spec:
     - name: data
       count: 3
       config:
-        mnode.roles: ["data"]
+        node.roles: ["data"]
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
@@ -53,7 +53,7 @@ spec:
     - name: ingest
       count: 2
       config:
-        mnode.roles: ["ingest"]
+        node.roles: ["ingest"]
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
@@ -68,7 +68,7 @@ spec:
     - name: transform
       count: 2
       config:
-        mnode.roles: ["transform"]
+        node.roles: ["transform"]
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
@@ -83,7 +83,7 @@ spec:
     - name: learner
       count: 1
       config:
-        mnode.roles: ["ml"]
+        node.roles: ["ml"]
         node.store.allow_mmap: false
       volumeClaimTemplates:
         - metadata:
