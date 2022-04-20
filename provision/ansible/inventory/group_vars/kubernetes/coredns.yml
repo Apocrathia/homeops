@@ -1,0 +1,5 @@
+---
+# (string) The cluster IP address for the coredns service
+coredns_address: "10.50.8.8"
+# The domain to use for DNS
+coredns_domain: "cluster.local"
