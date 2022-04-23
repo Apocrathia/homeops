@@ -3,7 +3,7 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "3.10.0"
+      version = "3.13.0"
     }
     http = {
       source  = "hashicorp/http"
@@ -89,7 +89,6 @@ resource "cloudflare_record" "ipv4" {
   proxied = true
   type    = "A"
   ttl     = 1
-  allow_overwrite = true
 }
 
 resource "cloudflare_record" "root" {
@@ -99,25 +98,4 @@ resource "cloudflare_record" "root" {
   proxied = true
   type    = "CNAME"
   ttl     = 1
-  allow_overwrite = true
-}
-
-resource "cloudflare_record" "hajimari" {
-  name    = "hajimari"
-  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
-  value   = "ipv4.${data.sops_file.cloudflare_secrets.data["cloudflare_domain"]}"
-  proxied = true
-  type    = "CNAME"
-  ttl     = 1
-  allow_overwrite = true
-}
-
-resource "cloudflare_record" "echo_server" {
-  name    = "echo-server"
-  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
-  value   = "ipv4.${data.sops_file.cloudflare_secrets.data["cloudflare_domain"]}"
-  proxied = true
-  type    = "CNAME"
-  ttl     = 1
-  allow_overwrite = true
 }
