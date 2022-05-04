@@ -81,7 +81,7 @@ spec:
           - name: reload
           # forward requests to the UniFi gateway
           - name: forward
-            parameters: . 10.50.8.1
+            parameters: . 10.50.8.1:53
     service:
       externalTrafficPolicy: Local
       annotations:
