@@ -27,6 +27,54 @@
         name: xanmanning.k3s
         public: true
 
+    - name: etcd-secrets | load etcd certificate authority
+      ansible.builtin.slurp:
+        src: "/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt"
+      register: slurped_etcd_ca_file
+
+    - name: etcd-secrets | load etcd certificate
+      ansible.builtin.slurp:
+        src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.crt"
+      register: slurped_etcd_cert_file
+
+    - name: etcd-secrets | load etcd certificate key
+      ansible.builtin.slurp:
+        src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.key"
+      register: slurped_etcd_cert_key_file
+
+    - name: etcd-secrets | deploy manifests
+      ansible.builtin.copy:
+        mode: 0644
+        content: |
+          ---
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: networking
+          ---
+          apiVersion: v1
+          kind: Secret
+          type: Opaque
+          metadata:
+            name: coredns-etcd
+            namespace: kube-system
+          data:
+            ca.crt: "{{ slurped_etcd_ca_file.content }}"
+            cert.pem: "{{ slurped_etcd_cert_file.content }}"
+            key.pem: "{{ slurped_etcd_cert_key_file.content }}"
+          ---
+          apiVersion: v1
+          kind: Secret
+          type: Opaque
+          metadata:
+            name: coredns-etcd
+            namespace: networking
+          data:
+            ca.crt: "{{ slurped_etcd_ca_file.content }}"
+            cert.pem: "{{ slurped_etcd_cert_file.content }}"
+            key.pem: "{{ slurped_etcd_cert_key_file.content }}"
+        dest: "{{ k3s_server_manifests_dir }}/coredns-etcd-secret.yaml"
+
     - name: Get absolute path to this Git repository
       delegate_to: localhost
       become: false
