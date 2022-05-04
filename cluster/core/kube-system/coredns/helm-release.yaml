@@ -79,6 +79,9 @@ spec:
           - name: ready
           # allows automatic reload of a changed Corefile
           - name: reload
+          # forward requests to the UniFi gateway
+          - name: forward
+            parameters: . 10.50.8.1
     service:
       externalTrafficPolicy: Local
       annotations:
