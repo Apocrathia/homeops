@@ -47,4 +47,4 @@ spec:
       - crd
       - service
       - ingress
-    # txtPrefix: "k8s."
+    txtPrefix: "k8s."
