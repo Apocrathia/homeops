@@ -14,7 +14,9 @@ tasks:
     cmds:
       - task ansible:playbook:k3s-install
       - cp -f provision/kubeconfig ~/.kube/config
-      - task flux:deploy; sleep 10
-      - task flux:deploy; sleep 10
+      - task flux:deploy
+      - sleep 10
+      - task flux:deploy
+      - sleep 10
       - task flux:sync
       - echo "Now try again, dumbass..."
