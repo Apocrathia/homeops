@@ -4,12 +4,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - helm-release.yaml # Operator
----
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - elasticsearch.yaml
-  - kibana.yaml
-  - apm.yaml
-  - enterprise-search.yaml
-  - agent.yaml
+  - resources/elasticsearch.yaml
+  - resources/kibana.yaml
+  - resources/apm.yaml
+  - resources/enterprise-search.yaml
+  - resources/agent.yaml
