@@ -45,7 +45,7 @@ spec:
     replicaCount: 2
     servers:
       - zones:
-          - zone: "${SECRET_DOMAIN}."
+          - zone: "${SECRET_DOMAIN}"
             scheme: dns://
         port: 53
         plugins:
