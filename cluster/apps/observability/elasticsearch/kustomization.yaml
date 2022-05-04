@@ -3,8 +3,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  # - crds.yaml
   - helm-release.yaml # Operator
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
   - elasticsearch.yaml
   - kibana.yaml
   - apm.yaml
