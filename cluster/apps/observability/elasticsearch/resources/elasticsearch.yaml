@@ -8,6 +8,7 @@ metadata:
   name: elasticsearch
   namespace: observability
 spec:
+  # renovate: registryUrl=https://helm.elastic.co chart=elasticsearch
   version: 8.1.2
   transport:
     service:

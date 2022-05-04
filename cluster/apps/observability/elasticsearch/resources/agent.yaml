@@ -4,6 +4,7 @@ metadata:
   name: fleet-server
   namespace: observability
 spec:
+  # renovate: registryUrl=https://helm.elastic.co chart=elasticsearch
   version: 8.1.2
   kibanaRef:
     name: kibana
@@ -26,6 +27,7 @@ metadata:
   name: elastic-agent
   namespace: observability
 spec:
+  # renovate: registryUrl=https://helm.elastic.co chart=elasticsearch
   version: 8.1.2
   kibanaRef:
     name: kibana
