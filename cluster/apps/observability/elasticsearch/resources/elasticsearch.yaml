@@ -12,6 +12,11 @@ spec:
   transport:
     service:
       spec:
+        metadata:
+          name: elasticsearch
+          annotations:
+            external-dns.alpha.kubernetes.io/hostname: elasticsearch.${SECRET_DOMAIN}
+            external-dns.alpha.kubernetes.io/ttl: "120" #optional
         type: LoadBalancer
         externalName: elasticsearch.observability.${SECRET_DOMAIN}
         ports:
