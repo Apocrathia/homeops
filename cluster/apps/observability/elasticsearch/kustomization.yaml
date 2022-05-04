@@ -4,8 +4,4 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - helm-release.yaml # Operator
-  - resources/elasticsearch.yaml
-  - resources/kibana.yaml
-  - resources/apm.yaml
-  - resources/enterprise-search.yaml
-  - resources/agent.yaml
+  - resources
