@@ -33,6 +33,11 @@
   "helm-values": {
     fileMatch: ["cluster/.+\\.ya?ml$"],
   },
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "automerge": true,
+    "assignees": ["@Apocrathia"]
+  }
   kubernetes: {
     fileMatch: ["cluster/.+\\.ya?ml$"],
   },
