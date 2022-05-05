@@ -5,13 +5,23 @@ metadata:
   namespace: observability
 spec:
   # renovate: registryUrl=https://helm.elastic.co chart=elasticsearch
-  version: 8.1.2
+  version: 8.2.0
   kibanaRef:
     name: kibana
   elasticsearchRefs:
     - name: elasticsearch
   mode: fleet
   fleetServerEnabled: true
+  http:
+    service:
+      metadata:
+        name: elasticsearch
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: fleet.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/ttl: "120" #optional
+      spec:
+        type: LoadBalancer
+        externalName: fleet.${SECRET_DOMAIN}
   deployment:
     replicas: 2
     podTemplate:
@@ -28,7 +38,7 @@ metadata:
   namespace: observability
 spec:
   # renovate: registryUrl=https://helm.elastic.co chart=elasticsearch
-  version: 8.1.2
+  version: 8.2.0
   kibanaRef:
     name: kibana
   fleetServerRef:

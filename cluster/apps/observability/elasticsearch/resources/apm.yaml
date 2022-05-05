@@ -5,7 +5,7 @@ metadata:
   namespace: observability
 spec:
   # renovate: registryUrl=https://helm.elastic.co chart=elasticsearch
-  version: 8.1.2
+  version: 8.2.0
   count: 1
   config:
     name: elastic-apm
@@ -13,7 +13,14 @@ spec:
     apm-server.jaeger.grpc.host: "0.0.0.0:14250"
   http:
     service:
+      metadata:
+        name: apm
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: apm.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/ttl: "120" #optional
       spec:
+        type: LoadBalancer
+        externalName: apm.${SECRET_DOMAIN}
         ports:
           - name: http
             port: 8200

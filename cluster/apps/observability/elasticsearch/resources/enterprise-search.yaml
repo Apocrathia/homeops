@@ -5,7 +5,7 @@ metadata:
   namespace: observability
 spec:
   # renovate: registryUrl=https://helm.elastic.co chart=elasticsearch
-  version: 8.1.2
+  version: 8.2.0
   count: 1
   elasticsearchRef:
     name: elasticsearch
