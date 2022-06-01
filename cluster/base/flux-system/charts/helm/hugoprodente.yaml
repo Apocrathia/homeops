@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: hugoprudente-charts
+  namespace: flux-system
+spec:
+  interval: 30m
+  url: https://github.com/hugoprudente/charts/
+  timeout: 3m
