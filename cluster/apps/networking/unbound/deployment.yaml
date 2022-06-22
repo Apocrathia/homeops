@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: unbound
-          image: klutchell/unbound
+          image: mvance/unbound
           ports:
             - containerPort: 53
               name: dns-udp
