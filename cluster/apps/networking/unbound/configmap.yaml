@@ -5,4 +5,21 @@ metadata:
   namespace: networking
 data:
   unbound.conf: |
-    # Unbound is a validating resolver for DNS.
+    server:
+      verbosity: 1
+      interface: 0.0.0.0
+      port: 53
+      access-control: 127.0.0.1/8 allow
+      access-control: 10.0.0.0/16 allow
+    forward-zone:                           # Internal Addresses
+      name: "apocrathia.com."
+      forward-addr: 10.100.1.1              # Service DNS
+      forward-addr: 10.100.0.1              # Access DNS
+      forward-addr: ${SVC_COREDNS_ADDRESS}  # Kubernetes DNS
+    forward-zone:                           # External Addresses
+      name: "."
+      forward-tls-upstream: yes
+      forward-addr: 45.90.28.0#d53d6c.dns1.nextdns.io
+      forward-addr: 2a07:a8c0::#d53d6c.dns1.nextdns.io
+      forward-addr: 45.90.30.0#d53d6c.dns2.nextdns.io
+      forward-addr: 2a07:a8c1::#d53d6c.dns2.nextdns.io
