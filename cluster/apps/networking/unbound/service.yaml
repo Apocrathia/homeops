@@ -1,0 +1,39 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dns-tcp
+  namespace: networking
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: unbound
+spec:
+  selector:
+    app: unbound
+  ports:
+    - protocol: TCP
+      port: 53
+      targetPort: 53
+      name: dns
+  type: LoadBalancer
+  loadBalancerIP: 10.0.8.53
+  externalTrafficPolicy: Local
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dns-udp
+  namespace: networking
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: unbound
+spec:
+  selector:
+    app: unbound
+  ports:
+    - protocol: UDP
+      port: 53
+      targetPort: 53
+      name: dns
+  type: LoadBalancer
+  loadBalancerIP: 10.0.8.53
+  externalTrafficPolicy: Local

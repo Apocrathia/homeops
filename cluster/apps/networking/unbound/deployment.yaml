@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unbound
+  namespace: networking
+  labels:
+    app: unbound
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: unbound
+  template:
+    metadata:
+      labels:
+        app: unbound
+    spec:
+      containers:
+        - name: unbound
+          image: klutchell/unbound
+          ports:
+            - containerPort: 53
+              name: dns-udp
+              protocol: UDP
+            - containerPort: 53
+              name: dns-tcp
+              protocol: TCP
+          volumeMounts:
+            - name: unbound-config
+              mountPath: /etc/unbound/unbound.conf
+              subPath: unbound.conf
+          resources:
+            limits:
+              cpu: "1.0"
+              memory: 170Mi
+            requests:
+              cpu: "0.25"
+              memory: 70Mi

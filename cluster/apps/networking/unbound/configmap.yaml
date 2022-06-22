@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: unbound-config
+  namespace: networking
+data:
+  unbound.conf: |
+    # Unbound is a validating resolver for DNS.
