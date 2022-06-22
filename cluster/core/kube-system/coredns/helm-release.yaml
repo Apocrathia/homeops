@@ -80,11 +80,9 @@ spec:
           # allows automatic reload of a changed Corefile
           - name: reload
           # forward requests to the UniFi gateway
-          - name: forward
-            parameters: . 10.50.8.1:53
+          # - name: forward
+          #   parameters: . 10.50.8.1:53
     service:
       externalTrafficPolicy: Local
-      annotations:
-        metallb.universe.tf/allow-shared-ip: coredns
-      loadBalancerIP: "${SVC_COREDNS_ADDRESS}"
-    serviceType: LoadBalancer
+      clusterIP: "${SVC_COREDNS_ADDRESS}"
+    serviceType: ClusterIP
