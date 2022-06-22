@@ -26,6 +26,10 @@ spec:
             - containerPort: 53
               name: dns-tcp
               protocol: TCP
+          volumes:
+            - name: unbound-config
+              configMap:
+                name: unbound-config
           volumeMounts:
             - name: unbound-config
               mountPath: /etc/unbound/unbound.conf
