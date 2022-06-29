@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -5,3 +6,7 @@ resources:
   - external-dns
   - traefik
   - unbound
+  - error-pages
+  - cloudflare-ddns
+  - metallb
+  - k8s-gateway

@@ -5,3 +5,4 @@ resources:
   - secret.sops.yaml
   - external-dns-cloudflare
   - internal-dns
+  - helm-release.yaml
