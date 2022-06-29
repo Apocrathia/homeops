@@ -27,6 +27,7 @@ data:
       forward-addr: 10.100.1.1              # Service DNS
       forward-addr: 10.100.0.1              # Access DNS
       forward-addr: ${SVC_COREDNS_ADDRESS}  # Kubernetes DNS
+      forward-addr: ${SVC_INTERNAL_DNS_ADDRESS} # Internal DNS
     forward-zone:                           # External Addresses
       name: "."
       forward-tls-upstream: yes

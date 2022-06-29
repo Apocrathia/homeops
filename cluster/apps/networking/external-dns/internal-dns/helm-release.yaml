@@ -48,3 +48,7 @@ spec:
       - service
       - ingress
     txtPrefix: ""
+    service:
+      enabled: true
+      type: ClusterIP
+      ClusterIP: ${SVC_INTERNAL_DNS_ADDRESS}
