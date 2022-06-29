@@ -67,7 +67,6 @@
       ],
       "datasourceTemplate": "helm"
     },
-  "regexManagers": [
     {
       "description": "Process CRD dependencies",
       "fileMatch": ["cluster/crds/.+\\.ya?ml$"],
