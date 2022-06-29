@@ -84,5 +84,5 @@ spec:
           #   parameters: . 10.50.8.1:53
     service:
       externalTrafficPolicy: Local
-      clusterIP: "${SVC_COREDNS_ADDRESS}"
+      clusterIP: ${SVC_COREDNS_ADDRESS}
     serviceType: ClusterIP
