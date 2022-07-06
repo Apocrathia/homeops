@@ -36,6 +36,7 @@ jobs:
         upstream_sync_branch: main
         upstream_sync_repo: k8s-at-home/flux-cluster-template
         upstream_repo_access_token: ${{ secrets.UPSTREAM_REPO_SECRET }}
+        git_config_pull_rebase: true
 
         # Set test_mode true to run tests instead of the true action!!
         test_mode: false
