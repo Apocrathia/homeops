@@ -9,7 +9,7 @@ collections:
   - name: devsec.hardening
     version: 8.7.0
   - name: ansible.utils
-    version: 2.10.1
+    version: 2.10.2
 roles:
   - src: xanmanning.k3s
     version: v3.3.1
